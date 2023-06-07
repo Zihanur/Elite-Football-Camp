@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
 const SignUp = () => {
-  const { createUser, userProfileUpdate } = useContext(AuthContext);
+  const { createUser, userProfileUpdate, googleLogin } =
+    useContext(AuthContext);
 
   const {
     register,
@@ -25,6 +26,17 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error.message);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+        reset();
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -108,7 +120,10 @@ const SignUp = () => {
           </form>
           <div className="divider">OR</div>
           <div className="flex justify-center mb-3">
-            <button className="items-center btn btn-outline py-1 px-4">
+            <button
+              onClick={handleGoogleLogin}
+              className="items-center btn btn-outline py-1 px-4"
+            >
               <img
                 style={{ height: "40px", width: "40px" }}
                 src="https://i.ibb.co/yW1wzqG/google-logo.png"

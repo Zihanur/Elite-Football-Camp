@@ -4,15 +4,15 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
-  const {user,logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-  const handleLogOut = ()=>{
+  const handleLogOut = () => {
     logOut()
-    .then(()=>{})
-    .catch(error=>{
-      console.log(error)
-    })
-  }
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const bars = (
     <>
@@ -66,33 +66,30 @@ const Navbar = () => {
           <div className="navbar-end">
             {user && (
               <div className="dropdown dropdown-end">
-              <label
-                tabIndex={0}
-                className="btn btn-ghost btn-circle avatar"
-                title={user?.displayName}
-              >
-                <div className="w-10 rounded-full">
-                  <img src={user?.photoURL} />
-                </div>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-20"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <button onClick={handleLogOut}>Logout</button>
-                </li>
-              </ul>
-            </div>
+                <label
+                  tabIndex={0}
+                  className="btn btn-ghost btn-circle avatar"
+                  title={user?.displayName}
+                >
+                  <div className="w-10 rounded-full">
+                    <img src={user?.photoURL} />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-20"
+                >
+                  <li>
+                    <a>Profile Update</a>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <button onClick={handleLogOut}>Logout</button>
+                  </li>
+                </ul>
+              </div>
             )}
           </div>
         </div>

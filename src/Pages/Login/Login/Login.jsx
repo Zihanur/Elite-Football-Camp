@@ -4,12 +4,13 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const { userLogin } = useContext(AuthContext);
+  const { userLogin, googleLogin } = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
@@ -17,6 +18,17 @@ const Login = () => {
     userLogin(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+        reset();
       })
       .catch((error) => {
         console.log(error);
@@ -72,7 +84,10 @@ const Login = () => {
           </form>
           <div className="divider">OR</div>
           <div className="flex justify-center mb-3">
-            <button className="items-center btn btn-outline py-1 px-4">
+            <button
+              onClick={handleGoogleLogin}
+              className="items-center btn btn-outline py-1 px-4"
+            >
               <img
                 style={{ height: "40px", width: "40px" }}
                 src="https://i.ibb.co/yW1wzqG/google-logo.png"
