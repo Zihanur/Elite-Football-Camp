@@ -11,10 +11,11 @@ const Footer = () => {
     <div>
       <footer className="footer p-10 bg-neutral text-neutral-content">
         <div>
-          <h1 className="text-3xl font-bold text-green-400">
-            Elite Football <br />
-            <span className="text-lime-400">Camp</span>
+          <h1 className="text-3xl font-bold text-green-400 mb-3">
+            Elite Football Camp
           </h1>
+          <p>32/2 Road 4, Dhanmondi</p>
+          <p>Dhaka, Bangladesh</p>
         </div>
         <div>
           <span className="text-xl font-bold text-green-400">Company</span>

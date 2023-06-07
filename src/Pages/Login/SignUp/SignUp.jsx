@@ -1,18 +1,32 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const SignUp = () => {
+  const { createUser} = useContext(AuthContext)
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    console.log(data)
+    createUser(data.email, data.password)
+    .then(result=>{
+      console.log(result.user)
+    })
+    .catch(error=>{
+      console.log(error.message)
+    })
+  };
 
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 my-4">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 my-8">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <h1 className="text-center text-3xl font-bold">SignUp Here</h1>
             <div className="form-control">
