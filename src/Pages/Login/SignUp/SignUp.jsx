@@ -4,23 +4,28 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
 const SignUp = () => {
-  const { createUser} = useContext(AuthContext)
+  const { createUser, userProfileUpdate } = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     createUser(data.email, data.password)
-    .then(result=>{
-      console.log(result.user)
-    })
-    .catch(error=>{
-      console.log(error.message)
-    })
+      .then((result) => {
+        console.log(result.user);
+        userProfileUpdate(data.name, data.photo).then((result) => {
+          console.log(result.user);
+          reset();
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (

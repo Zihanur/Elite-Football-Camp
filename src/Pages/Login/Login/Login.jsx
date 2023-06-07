@@ -1,16 +1,33 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const {user} = useContext(AuthContext)
-  console.log(user)
+  const { userLogin } = useContext(AuthContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    userLogin(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 my-8">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <h1 className="text-center text-3xl font-bold">Login Here</h1>
             <div className="form-control">
               <label className="label">
@@ -20,7 +37,9 @@ const Login = () => {
                 type="text"
                 placeholder="email"
                 className="input input-bordered"
+                {...register("email", { required: true })}
               />
+              {errors.email && <span>This field is required</span>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -30,7 +49,9 @@ const Login = () => {
                 type="text"
                 placeholder="password"
                 className="input input-bordered"
+                {...register("password", { required: true })}
               />
+              {errors.password && <span>This field is required</span>}
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
