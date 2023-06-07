@@ -1,8 +1,9 @@
+import SliderSection from "../SliderSection/SliderSection";
 
 const Home = () => {
   return (
     <div>
-      Home
+      <SliderSection></SliderSection>
     </div>
   );
 };
