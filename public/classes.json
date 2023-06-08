@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Warm-up Training",
+    "photo": "https://i.ibb.co/kDDZKX0/Adobe-Stock-375145706-Preview.jpg",
+    "activities": "Jogging in place, Jumping Jacks, High Knees, Butt Kicks, Arm Circles, Leg Swings, Torso Twists, Shoulder Rolls, Lunges, Dynamic Stretches, Side Shuffle, Toe Touches.",
+    "instructors": "John Smith",
+    "total_seat": 20,
+    "totalStudents": 15,
+    "price": 160
+  },
+  {
+    "name": "Technical Skills Training",
+    "photo": "https://i.ibb.co/9vDdVW1/Adobe-Stock-375097930-Preview.jpg",
+    "activities": "Passing drills, Shooting practice, Dribbling exercises, Agility ladder, Cone drills, Tactical simulations, Strength training, Speed sprints, Defensive positioning, Ball control drills, Heading practice, Set piece training.",
+    "instructors": "Emily Johnson",
+    "total_seat": 20,
+    "totalStudents": 12,
+    "price": 110
+  },
+  {
+    "name": "Tactical Training",
+    "photo": "https://i.ibb.co/cxfXGvs/Adobe-Stock-561370785-Preview.jpg",
+    "activities": "Formations analysis, Team positioning drills, Tactical game simulations, Defensive shape training, Counter-attack strategies, Pressing exercises, Attacking patterns, Defensive transitions.",
+    "instructors": "David Anderson",
+    "total_seat": 20,
+    "totalStudents": 10,
+    "price": 140
+  },
+  {
+    "name": "Physical Training",
+    "photo": "https://i.ibb.co/7j0jpYD/f7.jpg",
+    "activities": "Running sprints, Plyometric exercises, Weightlifting, Circuit training, Interval training, Agility drills, Cardiovascular workouts, Core strengthening, Resistance training, Flexibility exercises, High-intensity interval training, Endurance workouts.",
+    "instructors": "Sarah Davis",
+    "total_seat": 20,
+    "totalStudents": 11,
+    "price": 80
+  },
+  {
+    "name": "Mental Skills Training",
+    "photo": "https://i.ibb.co/Sd8LL4p/f3.jpg",
+    "activities": "Visualization exercises, Goal setting, Positive self-talk, Mindfulness meditation, Concentration drills, Imagery practice, Stress management techniques, Emotional regulation training, Mental toughness exercises, Decision-making simulations, Focus training, Confidence building activities.",
+    "instructors": "Daniel Garcia",
+    "total_seat": 20,
+    "totalStudents": 14,
+    "price": 150
+  },
+  {
+    "name": "Game Situations Training",
+    "photo": "https://i.ibb.co/z4j0qWF/Adobe-Stock-125615546-Preview.jpg",
+    "activities": "Small-sided games, Scrimmages, Game simulations, Position-specific drills, Game strategy discussions, Transition training, Game-related fitness exercises, Decision-making scenarios, Game-condition shooting practice, Team-building activities, Game analysis sessions, Game pressure simulations.",
+    "instructors": "Sophia Martinez",
+    "total_seat": 20,
+    "totalStudents": 19,
+    "price": 200
+  },
+  {
+    "name": "Positioning Training",
+    "photo": "https://i.ibb.co/znTHHTn/Adobe-Stock-537281594-Preview.jpg",
+    "activities": "Defensive positioning drills, Offensive positioning practice, Transition positioning exercises, Communication exercises, Anticipation drills, Marking and tracking practice, Support play training, Spatial awareness drills, Position-specific simulations, Off-the-ball movement practice, Defensive covering exercises, Overlapping and underlapping runs.",
+    "instructors": "Jessica Wilson",
+    "total_seat": 20,
+    "totalStudents": 16,
+    "price": 180
+  }
+]

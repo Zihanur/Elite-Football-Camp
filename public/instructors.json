@@ -1,0 +1,62 @@
+[
+  {
+    "name": "John Smith",
+    "email": "johnsmith@example.com",
+    "image": "https://i.ibb.co/F3fghBc/coach-1.jpg",
+    "details": "John Smith is a highly experienced football instructor with over 10 years of coaching experience. He specializes in teaching advanced techniques for both offensive and defensive strategies."
+  },
+  {
+    "name": "Emily Johnson",
+    "email": "emilyjohnson@example.com",
+    "image": "https://i.ibb.co/jDxYmHC/coach-2.jpg",
+    "details": "Emily Johnson is a former professional football player turned instructor. She brings her extensive knowledge of the game and her passion for teaching to every training session."
+  },
+  {
+    "name": "David Anderson",
+    "email": "davidanderson@example.com",
+    "image": "https://i.ibb.co/LpMrLCF/coach-3.jpg",
+    "details": "David Anderson has coached various youth teams and has a knack for developing young talent. He focuses on building strong fundamentals and fostering a love for the game."
+  },
+  {
+    "name": "Sarah Davis",
+    "email": "sarahdavis@example.com",
+    "image": "https://i.ibb.co/BtmcKMw/coach-4.jpg",
+    "details": "Sarah Davis is a versatile football instructor with expertise in both offense and defense. Her dynamic coaching style and attention to detail have helped teams achieve remarkable results."
+  },
+  {
+    "name": "Michael Thompson",
+    "email": "michaelthompson@example.com",
+    "image": "https://i.ibb.co/rwVK01s/coach-5.jpg",
+    "details": "Michael Thompson is known for his strategic approach to coaching. He emphasizes teamwork, communication, and discipline to elevate players' performance on and off the field."
+  },
+  {
+    "name": "Jessica Wilson",
+    "email": "jessicawilson@example.com",
+    "image": "https://i.ibb.co/tY1SNTZ/coach-6.jpg",
+    "details": "Jessica Wilson is a dedicated football instructor who believes in the power of continuous improvement. She encourages players to set goals and works closely with them to achieve their full potential."
+  },
+  {
+    "name": "Ryan Miller",
+    "email": "ryanmiller@example.com",
+    "image": "https://i.ibb.co/hgZb6V4/coach-7.jpg",
+    "details": "Ryan Miller has a strong background in sports psychology, which he incorporates into his coaching style. He helps players develop mental toughness and resilience on the field."
+  },
+  {
+    "name": "Olivia Brown",
+    "email": "oliviabrown@example.com",
+    "image": "https://i.ibb.co/k8ZVr58/coach-8.jpg",
+    "details": "Olivia Brown is an energetic and passionate football instructor. She creates a fun and engaging learning environment, motivating players to give their best and enjoy the game."
+  },
+  {
+    "name": "Daniel Garcia",
+    "email": "danielgarcia@example.com",
+    "image": "https://i.ibb.co/Jm4SMKh/coach-9.jpg",
+    "details": "Daniel Garcia is a former professional football player who brings his on-field experience to his coaching. He focuses on developing technical skills and tactical awareness."
+  },
+  {
+    "name": "Sophia Martinez",
+    "email": "sophiamartinez@example.com",
+    "image": "https://i.ibb.co/cCg42S0/coach-10.jpg",
+    "details": "Sophia Martinez is a knowledgeable football instructor who excels at breaking down complex concepts into simple and actionable steps. She ensures that players understand and apply the fundamentals effectively."
+  }
+]
