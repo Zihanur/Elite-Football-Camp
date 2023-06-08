@@ -1,5 +1,5 @@
 const Instructor = ({ instructor }) => {
-  console.log(instructor);
+  
   return (
     <>
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -11,7 +11,7 @@ const Instructor = ({ instructor }) => {
           <p>{instructor.details}</p>
           <p>Total students: 11</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Inatructor classes</button>
+            <button className="bg-transparent border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-2 px-4 rounded-md">Inatructor classes</button>
           </div>
         </div>
       </div>

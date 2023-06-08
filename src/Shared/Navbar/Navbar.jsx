@@ -56,7 +56,7 @@ const Navbar = () => {
                 {bars}
               </ul>
             </div>
-            <Link to={"/"} className="btn btn-ghost text-3xl">
+            <Link to={"/"} className="btn btn-ghost text-4xl">
               Elite Footbal Camp
             </Link>
           </div>
