@@ -26,6 +26,9 @@ const Dashboard = () => {
             <li>
               <NavLink to={"/dashboard/myenrolled"}>My Enrolled Classes</NavLink>
             </li>
+            <li>
+              <NavLink to={"/dashboard/payment"}>Payment</NavLink>
+            </li>
           </ul>
         </div>
       </div>

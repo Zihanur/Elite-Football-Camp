@@ -9,7 +9,11 @@ const Class = ({ singleClass }) => {
   return (
     <div>
       <div className=" bg-base-200 rounded-xl">
-        <div className="hero-content flex-col">
+        <div
+          className={`hero-content flex-col ${
+            isDisabled ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
           <img
             src={singleClass?.photo}
             className="max-w rounded-lg shadow-xl"
@@ -30,9 +34,11 @@ const Class = ({ singleClass }) => {
             <button
               disabled={isDisabled}
               onClick={() => handleDisabled(singleClass._id)}
-              className={`bg-transparent border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-2 px-4 rounded-md ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`bg-transparent border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-2 px-4 rounded-md ${
+                isDisabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
-              Select
+              {isDisabled ? "Selected" : "Select"}
             </button>
           </div>
         </div>
