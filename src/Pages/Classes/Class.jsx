@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Class = ({ singleClass }) => {
   const [isDisabled, setIsDisabled] = useState(false);
+  const {user} = useContext(AuthContext);
 
   const handleDisabled = () => {
     setIsDisabled(true);
@@ -31,7 +33,8 @@ const Class = ({ singleClass }) => {
                 Price: ${singleClass?.price}
               </p>
             </div>
-            <button
+            {
+              user ? <button
               disabled={isDisabled}
               onClick={() => handleDisabled(singleClass._id)}
               className={`bg-transparent border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-2 px-4 rounded-md ${
@@ -39,7 +42,8 @@ const Class = ({ singleClass }) => {
               }`}
             >
               {isDisabled ? "Selected" : "Select"}
-            </button>
+            </button> : <><p className="text-warning">Please log in before selecting a course.</p></>
+            }
           </div>
         </div>
       </div>
