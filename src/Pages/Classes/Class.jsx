@@ -1,12 +1,50 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Class = ({ singleClass }) => {
   const [isDisabled, setIsDisabled] = useState(false);
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleDisabled = () => {
-    setIsDisabled(true);
+  const handleSelected = (item) => {
+    if (user) {
+      fetch("http://localhost:5000/select", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(item),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            setIsDisabled(true);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Selected",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please Login First!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login",{state:{from:location}});
+        }
+      });
+    }
   };
   return (
     <div>
@@ -33,17 +71,15 @@ const Class = ({ singleClass }) => {
                 Price: ${singleClass?.price}
               </p>
             </div>
-            {
-              user ? <button
+            <button
               disabled={isDisabled}
-              onClick={() => handleDisabled(singleClass._id)}
+              onClick={() => handleSelected(singleClass)}
               className={`bg-transparent border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-2 px-4 rounded-md ${
                 isDisabled ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
               {isDisabled ? "Selected" : "Select"}
-            </button> : <><p className="text-warning">Please log in before selecting a course.</p></>
-            }
+            </button>
           </div>
         </div>
       </div>

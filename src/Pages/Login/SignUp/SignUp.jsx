@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser, userProfileUpdate, googleLogin } =
@@ -33,6 +34,13 @@ const SignUp = () => {
     googleLogin()
       .then((result) => {
         console.log(result.user);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Signup Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
         reset();
       })
       .catch((error) => {
