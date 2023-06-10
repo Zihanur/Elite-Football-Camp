@@ -37,12 +37,12 @@ const SignUp = () => {
       .then((result) => {
         console.log(result.user);
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Signup Successfully',
+          position: "top-end",
+          icon: "success",
+          title: "Signup Successfully",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
         reset();
       })
       .catch((error) => {
@@ -93,7 +93,12 @@ const SignUp = () => {
                   type={hidePass ? "password" : "text"}
                   placeholder="password"
                   className="input input-bordered w-full "
-                  {...register("password", { required: true })}
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 20,
+                    pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/,
+                  })}
                 />
                 <p
                   onClick={handlePasswordShow}
@@ -102,7 +107,18 @@ const SignUp = () => {
                   {hidePass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
                 </p>
               </div>
-              {errors.password && <span>This field is required</span>}
+              {errors.password?.type === "required" && (
+                  <p className="text-red-600">Password is required</p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-600">Required min 6 digit</p>
+                )}
+                {errors.password?.type === "maxLength" && (
+                  <p className="text-red-600">Required max 20 digit</p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-600">Password have one uppercase, one special character.</p>
+                )}
             </div>
             <div className="form-control">
               <label className="label">
