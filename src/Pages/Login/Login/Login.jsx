@@ -1,14 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { userLogin, googleLogin } = useContext(AuthContext);
-  const location = useLocation()
+  const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
+  const [hidePass, setHidePass] = useState(true);
 
   const {
     register,
@@ -18,19 +20,18 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     userLogin(data.email, data.password)
       .then((result) => {
         console.log(result.user);
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Login Successfully',
+          position: "top-end",
+          icon: "success",
+          title: "Login Successfully",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
         reset();
-        navigate(from,{replace:true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -42,18 +43,22 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Login Successfully',
+          position: "top-end",
+          icon: "success",
+          title: "Login Successfully",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
         reset();
-        navigate(from,{replace:true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handlePasswordShow = () => {
+    setHidePass(!hidePass);
   };
 
   return (
@@ -72,19 +77,31 @@ const Login = () => {
                 className="input input-bordered"
                 {...register("email", { required: true })}
               />
-              {errors.email && <span>This field is required</span>}
+              {errors.email && (
+                <span className="text-red-500">This field is required</span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input
-                type="text"
-                placeholder="password"
-                className="input input-bordered"
-                {...register("password", { required: true })}
-              />
-              {errors.password && <span>This field is required</span>}
+              <div className="relative">
+                <input
+                  type={hidePass ? "password" : "text"}
+                  placeholder="password"
+                  className="input input-bordered w-full "
+                  {...register("password", { required: true })}
+                />
+                <p
+                  onClick={handlePasswordShow}
+                  className="btn absolute z-10 end-0"
+                >
+                  {hidePass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+                </p>
+              </div>
+              {errors.password && (
+                <span className="text-red-500">This field is required</span>
+              )}
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?

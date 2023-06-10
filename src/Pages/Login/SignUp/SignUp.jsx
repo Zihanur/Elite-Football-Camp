@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
   const { createUser, userProfileUpdate, googleLogin } =
     useContext(AuthContext);
+  const [hidePass, setHidePass] = useState(true);
 
   const {
     register,
@@ -48,6 +50,10 @@ const SignUp = () => {
       });
   };
 
+  const handlePasswordShow = () => {
+    setHidePass(!hidePass);
+  };
+
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
@@ -82,12 +88,20 @@ const SignUp = () => {
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input
-                type="password"
-                placeholder="Password"
-                className="input input-bordered"
-                {...register("password", { required: true })}
-              />
+              <div className="relative">
+                <input
+                  type={hidePass ? "password" : "text"}
+                  placeholder="password"
+                  className="input input-bordered w-full "
+                  {...register("password", { required: true })}
+                />
+                <p
+                  onClick={handlePasswordShow}
+                  className="btn absolute z-10 end-0"
+                >
+                  {hidePass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+                </p>
+              </div>
               {errors.password && <span>This field is required</span>}
             </div>
             <div className="form-control">
