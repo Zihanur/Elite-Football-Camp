@@ -6,7 +6,6 @@ const MyClasses = () => {
   const [select, refetch] = useSelect();
 
   const handleDelete = (item) => {
-    console.log(item)
     Swal.fire({
       title: "Are you sure?",
       icon: "warning",
