@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
@@ -71,8 +71,12 @@ const Navbar = () => {
                   className="btn btn-ghost btn-circle avatar"
                   title={user?.displayName}
                 >
-                  <div className="w-10 rounded-full">
-                    <img src={user?.photoURL} />
+                  <div className="w-10 rounded-full ">
+                    {user.photoURL ? (
+                      <img src={user?.photoURL} />
+                    ) : (
+                      <FaUserCircle></FaUserCircle>
+                    )}
                   </div>
                 </label>
                 <ul

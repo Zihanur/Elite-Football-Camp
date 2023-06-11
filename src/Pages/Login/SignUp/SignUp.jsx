@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -9,6 +9,8 @@ const SignUp = () => {
   const { createUser, userProfileUpdate, googleLogin } =
     useContext(AuthContext);
   const [hidePass, setHidePass] = useState(true);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const {
     register,
@@ -18,24 +20,32 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setError();
     console.log(data);
     createUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
-        userProfileUpdate(data.name, data.photo).then((result) => {
-          console.log(result.user);
+      .then(() => {
+        userProfileUpdate(data.name, data.photo).then(() => {
           reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Signup Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
         });
       })
       .catch((error) => {
-        console.log(error.message);
+        setError(error.message);
       });
   };
 
   const handleGoogleLogin = () => {
+    setError("");
     googleLogin()
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {  
+        reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -43,10 +53,10 @@ const SignUp = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        reset();
+        navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
   };
 
@@ -108,17 +118,19 @@ const SignUp = () => {
                 </p>
               </div>
               {errors.password?.type === "required" && (
-                  <p className="text-red-600">Password is required</p>
-                )}
-                {errors.password?.type === "minLength" && (
-                  <p className="text-red-600">Required min 6 digit</p>
-                )}
-                {errors.password?.type === "maxLength" && (
-                  <p className="text-red-600">Required max 20 digit</p>
-                )}
-                {errors.password?.type === "pattern" && (
-                  <p className="text-red-600">Password have one uppercase, one special character.</p>
-                )}
+                <p className="text-red-600">Password is required</p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-600">Required min 6 digit</p>
+              )}
+              {errors.password?.type === "maxLength" && (
+                <p className="text-red-600">Required max 20 digit</p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p className="text-red-600">
+                  Password have one uppercase, one special character.
+                </p>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -156,6 +168,7 @@ const SignUp = () => {
               </span>
             </div>
           </form>
+          <p className="text-red-500">{error}</p>
           <div className="divider">OR</div>
           <div className="flex justify-center mb-3">
             <button

@@ -10,13 +10,23 @@ const Class = ({ singleClass }) => {
   const location = useLocation();
 
   const handleSelected = (item) => {
-    if (user) {
+    const { _id, name, price, instructors, photo } = item;
+    
+    if (user && user.email) {
+      const selectClass = {
+        selectId: _id,
+        name,
+        price,
+        instructors,
+        photo,
+        email: user.email,
+      };
       fetch("http://localhost:5000/select", {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(item),
+        body: JSON.stringify(selectClass),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -30,8 +40,9 @@ const Class = ({ singleClass }) => {
               timer: 1500,
             });
           }
-        });
-    } else {
+        })
+    } 
+    else {
       Swal.fire({
         title: "Please Login First!",
         icon: "warning",
@@ -41,7 +52,7 @@ const Class = ({ singleClass }) => {
         confirmButtonText: "Login Now",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login",{state:{from:location}});
+          navigate("/login", { state: { from: location } });
         }
       });
     }

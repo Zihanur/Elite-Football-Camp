@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const [hidePass, setHidePass] = useState(true);
+  const [error, setError] = useState("");
 
   const {
     register,
@@ -20,9 +21,9 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setError("");
     userLogin(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -34,14 +35,14 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
   };
 
   const handleGoogleLogin = () => {
+    setError("");
     googleLogin()
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -53,7 +54,7 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
   };
 
@@ -119,7 +120,8 @@ const Login = () => {
                 </Link>
               </span>
             </div>
-          </form>
+            <p className="text-red-500">{error}</p>
+          </form> 
           <div className="divider">OR</div>
           <div className="flex justify-center mb-3">
             <button
