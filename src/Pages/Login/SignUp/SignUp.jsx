@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp = () => {
-  const { createUser, userProfileUpdate, googleLogin } =
+  const { createUser, userProfileUpdate } =
     useContext(AuthContext);
   const [hidePass, setHidePass] = useState(true);
   const [error, setError] = useState("");
@@ -25,41 +26,35 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then(() => {
         userProfileUpdate(data.name, data.photo).then(() => {
-          reset();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Signup Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/");
+          const insertUser = {name: data.name, email: data.email}
+          fetch("http://localhost:5000/users",{
+            method:"POST",
+            headers:{
+              'content-type':'application/json'
+            },
+            body:JSON.stringify(insertUser)
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Signup Successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
         });
       })
       .catch((error) => {
         setError(error.message);
       });
   };
-
-  const handleGoogleLogin = () => {
-    setError("");
-    googleLogin()
-      .then(() => {  
-        reset();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Signup Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  };
-
+  
   const handlePasswordShow = () => {
     setHidePass(!hidePass);
   };
@@ -170,18 +165,7 @@ const SignUp = () => {
           </form>
           <p className="text-red-500">{error}</p>
           <div className="divider">OR</div>
-          <div className="flex justify-center mb-3">
-            <button
-              onClick={handleGoogleLogin}
-              className="items-center btn btn-outline py-1 px-4"
-            >
-              <img
-                style={{ height: "40px", width: "40px" }}
-                src="https://i.ibb.co/yW1wzqG/google-logo.png"
-              />
-              Goolle
-            </button>
-          </div>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </>

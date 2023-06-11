@@ -4,9 +4,10 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
-  const { userLogin, googleLogin } = useContext(AuthContext);
+  const { userLogin } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -23,25 +24,6 @@ const Login = () => {
   const onSubmit = (data) => {
     setError("");
     userLogin(data.email, data.password)
-      .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        reset();
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  };
-
-  const handleGoogleLogin = () => {
-    setError("");
-    googleLogin()
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -123,18 +105,7 @@ const Login = () => {
             <p className="text-red-500">{error}</p>
           </form> 
           <div className="divider">OR</div>
-          <div className="flex justify-center mb-3">
-            <button
-              onClick={handleGoogleLogin}
-              className="items-center btn btn-outline py-1 px-4"
-            >
-              <img
-                style={{ height: "40px", width: "40px" }}
-                src="https://i.ibb.co/yW1wzqG/google-logo.png"
-              />
-              Goolle
-            </button>
-          </div>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </>
