@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const SocialLogin = () => {
   const { googleLogin } = useContext(AuthContext);
@@ -16,6 +15,7 @@ const SocialLogin = () => {
         const insertUser = {
           name: logedUser.displayName,
           email: logedUser.email,
+          photo: logedUser.photoURL,
         };
         fetch("http://localhost:5000/users", {
           method: "POST",

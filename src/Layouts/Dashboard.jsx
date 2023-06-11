@@ -1,9 +1,9 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const isAdmin = false;
+  const isAdmin = true;
   const isInstructor = false;
-  const isStudent = true;
+  const isStudent = false;
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -26,15 +26,14 @@ const Dashboard = () => {
             {isAdmin && (
               <>
                 <li>
-                  <NavLink to={"/dashboard/manageclasses"}>
-                    Manage Classes
-                  </NavLink>
+                  <button>
+                    <Link to={"/dashboard/manageclass"}>Manage Classes</Link>
+                  </button>
                 </li>
                 <li>
-                  <NavLink to={"/dashboard/manageuser"}>Manage User</NavLink>
-                </li>
-                <li>
-                  <NavLink to={"/dashboard/payment"}>Payment</NavLink>
+                  <button>
+                    <Link to={"/dashboard/manageuser"}>Manage User</Link>
+                  </button>
                 </li>
               </>
             )}
@@ -42,12 +41,12 @@ const Dashboard = () => {
             {isInstructor && (
               <>
                 <li>
-                  <NavLink to={"/dashboard/addclass"}>Add A Class</NavLink>
+                  <Link to={"/dashboard/addclass"}>Add A Class</Link>
                 </li>
                 <li>
-                  <NavLink to={"/dashboard/instructorclass"}>
+                  <Link to={"/dashboard/instructorclass"}>
                     My Classes
-                  </NavLink>
+                  </Link>
                 </li>
               </>
             )}
@@ -55,17 +54,17 @@ const Dashboard = () => {
             {isStudent && (
               <>
                 <li>
-                  <NavLink to={"/dashboard/myclasses"}>
+                  <Link to={"/dashboard/myclasses"}>
                     My Selected Classes
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink to={"/dashboard/myenrolled"}>
+                  <Link to={"/dashboard/myenrolled"}>
                     My Enrolled Classes
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink to={"/dashboard/payment"}>Payment</NavLink>
+                  <Link to={"/dashboard/payment"}>Payment</Link>
                 </li>
               </>
             )}
