@@ -44,7 +44,7 @@ const ManageUser = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Admin Successful",
+            title: "Make Admin Successful",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -52,9 +52,29 @@ const ManageUser = () => {
       });
   };
 
+  const handleMakeInstructor =(user)=>{
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Make Instructor Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  }
+
   return (
-    <div className="w-full m-8 mx-auto max-h-full">
-      <h1>Selected Classes: {users.length}</h1>
+    <div className="w-full ms-8 mx-auto max-h-full">
+      <h1 className="text-3xl font-bold text-center mb-4">Manage All Users</h1>
+      <h1>Total users: {users.length}</h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -64,7 +84,8 @@ const ManageUser = () => {
               <th>Photo</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Role</th>
+              <th>Make Instructor</th>
+              <th>Make Admin</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -82,6 +103,18 @@ const ManageUser = () => {
                 </td>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
+                <td>
+                  {user.role === "admin" ? (
+                    "admin"
+                  ) : (
+                    user.role === "instructor" ? "instructor" : (<button
+                      onClick={() => handleMakeInstructor(user)}
+                      className="btn btn-ghost bg-orange-600  text-white"
+                    >
+                      User
+                    </button>)
+                  )}
+                </td>
                 <td>
                   {user.role === "admin" ? (
                     "admin"

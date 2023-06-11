@@ -25,6 +25,7 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             {isAdmin && (
               <>
+                <h1 className="font-bold text-2xl mb-4">Admin Dashboard</h1>
                 <li>
                   <button>
                     <Link to={"/dashboard/manageclass"}>Manage Classes</Link>
@@ -40,6 +41,7 @@ const Dashboard = () => {
 
             {isInstructor && (
               <>
+              <h1 className="font-bold text-2xl mb-4">Instructor Dashboard</h1>
                 <li>
                   <Link to={"/dashboard/addclass"}>Add A Class</Link>
                 </li>
@@ -53,6 +55,7 @@ const Dashboard = () => {
 
             {isStudent && (
               <>
+              <h1 className="font-bold text-2xl mb-4">Student Dashboard</h1>
                 <li>
                   <Link to={"/dashboard/myclasses"}>
                     My Selected Classes
