@@ -1,11 +1,33 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useClasses from "../../../hooks/useClasses";
+import Swal from "sweetalert2";
 
 const ManageClass = () => {
-  const [allClass] = useClasses();
+  const [allClass,refetch] = useClasses();
 
   const handleDelete = (singleClass) => {
     console.log(singleClass);
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/classes/${singleClass._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Admin has been deleted.", "success");
+            }
+          });
+      }
+    });
   };
 
   return (
