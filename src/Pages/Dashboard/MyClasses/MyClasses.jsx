@@ -1,9 +1,11 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useSelect from "../../../hooks/useSelect";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const [select, refetch] = useSelect();
+  console.log(select);
 
   const handleDelete = (item) => {
     Swal.fire({
@@ -13,8 +15,7 @@ const MyClasses = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    })
-    .then((result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/select/${item._id}`, {
           method: "DELETE",
@@ -44,12 +45,12 @@ const MyClasses = () => {
               <th>Name</th>
               <th>Instructors</th>
               <th>Price</th>
-              <th>Payment</th>
+              <th>Pay</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {select.map((item, index) => (
+            {select?.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>
@@ -64,9 +65,12 @@ const MyClasses = () => {
                 <td>{item?.instructors}</td>
                 <td>{item?.price}</td>
                 <td>
-                  <button className="bg-orange-400 btn btn-sm rounded-sm text-white">
+                  <Link
+                    to={"/dashboard/payment"}
+                    className="bg-orange-400 btn btn-sm rounded-sm text-white"
+                  >
                     Pay
-                  </button>
+                  </Link>
                 </td>
                 <td>
                   <button

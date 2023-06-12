@@ -1,11 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
-//import useAdmin from "../hooks/useAdmin";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
-  //const [isAdmin] = useAdmin()
+  //const isAdmin = false;
+  const [isAdmin] = useAdmin();
   const isInstructor = false;
-  const isStudent = false;
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -25,7 +24,60 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {isAdmin && (
+            {isAdmin ? (
+              <>
+                <h1 className="font-bold text-2xl mb-4">Admin Dashboard</h1>
+                <li>
+                  <button>
+                    <Link to={"/dashboard/manageclass"}>Manage Classes</Link>
+                  </button>
+                </li>
+                <li>
+                  <button>
+                    <Link to={"/dashboard/manageuser"}>Manage User</Link>
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                {isInstructor ? (
+                  <>
+                    <h1 className="font-bold text-2xl mb-4">
+                      Instructor Dashboard
+                    </h1>
+                    <li>
+                      <Link to={"/dashboard/addclass"}>Add A Class</Link>
+                    </li>
+                    <li>
+                      <Link to={"/dashboard/instructorclasses"}>
+                        My Classes
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <h1 className="font-bold text-2xl mb-4">
+                      Student Dashboard
+                    </h1>
+                    <li>
+                      <Link to={"/dashboard/myclasses"}>
+                        My Selected Classes
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/dashboard/myenrolled"}>
+                        My Enrolled Classes
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/dashboard/payment"}>Payment</Link>
+                    </li>
+                  </>
+                )}
+              </>
+            )}
+
+            {/* {isAdmin && (
               <>
                 <h1 className="font-bold text-2xl mb-4">Admin Dashboard</h1>
                 <li>
@@ -68,7 +120,7 @@ const Dashboard = () => {
                   <Link to={"/dashboard/payment"}>Payment</Link>
                 </li>
               </>
-            )}
+            )} */}
           </ul>
         </div>
       </div>
