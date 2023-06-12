@@ -1,7 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
+//import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const isAdmin = true;
+  //const [isAdmin] = useAdmin()
   const isInstructor = false;
   const isStudent = false;
   return (
@@ -41,30 +43,26 @@ const Dashboard = () => {
 
             {isInstructor && (
               <>
-              <h1 className="font-bold text-2xl mb-4">Instructor Dashboard</h1>
+                <h1 className="font-bold text-2xl mb-4">
+                  Instructor Dashboard
+                </h1>
                 <li>
                   <Link to={"/dashboard/addclass"}>Add A Class</Link>
                 </li>
                 <li>
-                  <Link to={"/dashboard/instructorclass"}>
-                    My Classes
-                  </Link>
+                  <Link to={"/dashboard/instructorclasses"}>My Classes</Link>
                 </li>
               </>
             )}
 
             {isStudent && (
               <>
-              <h1 className="font-bold text-2xl mb-4">Student Dashboard</h1>
+                <h1 className="font-bold text-2xl mb-4">Student Dashboard</h1>
                 <li>
-                  <Link to={"/dashboard/myclasses"}>
-                    My Selected Classes
-                  </Link>
+                  <Link to={"/dashboard/myclasses"}>My Selected Classes</Link>
                 </li>
                 <li>
-                  <Link to={"/dashboard/myenrolled"}>
-                    My Enrolled Classes
-                  </Link>
+                  <Link to={"/dashboard/myenrolled"}>My Enrolled Classes</Link>
                 </li>
                 <li>
                   <Link to={"/dashboard/payment"}>Payment</Link>

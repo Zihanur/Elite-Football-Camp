@@ -75,7 +75,7 @@ const SignUp = () => {
                 className="input input-bordered"
                 {...register("name", { required: true })}
               />
-              {errors.name && <span>This field is required</span>}
+              {errors.name && <span className="text-red-500">This field is required</span>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -87,7 +87,7 @@ const SignUp = () => {
                 className="input input-bordered"
                 {...register("email", { required: true })}
               />
-              {errors.email && <span>This field is required</span>}
+              {errors.email && <span className="text-red-500">This field is required</span>}
             </div>
             <div className="form-control">
               <label className="label">

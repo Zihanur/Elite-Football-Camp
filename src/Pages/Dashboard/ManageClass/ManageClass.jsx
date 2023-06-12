@@ -3,7 +3,7 @@ import useClasses from "../../../hooks/useClasses";
 import Swal from "sweetalert2";
 
 const ManageClass = () => {
-  const [allClass,refetch] = useClasses();
+  const [allClass, refetch] = useClasses();
 
   const handleDelete = (singleClass) => {
     console.log(singleClass);
@@ -48,6 +48,7 @@ const ManageClass = () => {
               <th>Available seats</th>
               <th>Price</th>
               <th>Delete</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -76,6 +77,19 @@ const ManageClass = () => {
                   >
                     <FaTrashAlt></FaTrashAlt>
                   </button>
+                </td>
+                <td>
+                  {/* TODO: when instructor add new class then show */}
+                  {!singleClass && (
+                    <>
+                      <span className="btn bg-green-600 rounded-full text-bold text-white ">
+                        A
+                      </span>
+                      <span className="btn bg-red-600 rounded-full text-bold text-white ">
+                        D
+                      </span>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}

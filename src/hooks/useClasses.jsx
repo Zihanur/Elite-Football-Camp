@@ -1,29 +1,27 @@
-import { useContext } from "react";
-import { AuthContext } from "../Providers/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
+import {  useEffect, useState } from "react";
 
 const useClasses = () => {
-  //const [allClass, setAllClass] = useState([]);
+  const [classes, setClasses ] = useState([]);
 
-  const { loading } = useContext(AuthContext);
-    const { refetch, data: clsses = [] } = useQuery({
-        queryKey: ['classes'],
-        enabled: !loading,
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/classes')
-            return res.json();
-        },
+  // const { loading } = useContext(AuthContext);
+  // const { refetch, data: classes = [] } = useQuery({
+  //   queryKey: ["classes"],
+  //   enabled: !loading,
+  //   queryFn: async () => {
+  //     const res = await fetch("http://localhost:5000/classes");
+  //     return res.json();
+  //   },
+  // });
+  // return [classes, refetch];
+
+  useEffect(()=>{
+    fetch('http://localhost:5000/classes')
+    .then(res=>res.json())
+    .then(data=>{
+      setClasses(data)
     })
-    return [clsses, refetch]
-  
-  // useEffect(()=>{
-  //   fetch('http://localhost:5000/classes')
-  //   .then(res=>res.json())
-  //   .then(data=>{
-  //     setAllClass(data)
-  //   })
-  // },[])
-  // return [allClass];
+  },[])
+  return [classes];
 };
 
 export default useClasses;

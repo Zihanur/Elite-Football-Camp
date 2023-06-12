@@ -1,9 +1,9 @@
-import { FaTrashAlt } from "react-icons/fa";
-import useSelect from "../../../hooks/useSelect";
 import Swal from "sweetalert2";
+import { FaTrashAlt } from "react-icons/fa";
+import useInstructorClasses from "../../../hooks/useInstructorClasses";
 
-const MyClasses = () => {
-  const [select, refetch] = useSelect();
+const InstructorClasses = () => {
+  const [instructorclasses, refetch] = useInstructorClasses()
 
   const handleDelete = (item) => {
     Swal.fire({
@@ -32,8 +32,10 @@ const MyClasses = () => {
 
   return (
     <div className="w-full m-8 mx-auto max-h-full">
-      <h1 className="text-3xl font-bold text-center mb-4">My All Classes</h1>
-      <h1>Selected Classes: {select.length}</h1>
+      <h1 className="text-3xl font-bold text-center my-4">
+        My All Classes
+      </h1>
+      <h1>Mt Total Classes: {instructorclasses?.length}</h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -49,7 +51,7 @@ const MyClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {select.map((item, index) => (
+            {instructorclasses?.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>
@@ -85,4 +87,4 @@ const MyClasses = () => {
   );
 };
 
-export default MyClasses;
+export default InstructorClasses;
